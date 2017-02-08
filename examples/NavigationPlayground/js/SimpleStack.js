@@ -6,6 +6,8 @@ import React from 'react';
 import {
   Button,
   ScrollView,
+  TouchableHighlight,
+  Text
 } from 'react-native';
 import {
   StackNavigator,
@@ -27,10 +29,20 @@ const MyNavScreen = ({ navigation, banner }) => (
 );
 
 const MyHomeScreen = ({ navigation }) => (
-  <MyNavScreen
-    banner="Home Screen"
-    navigation={navigation}
-  />
+  <ScrollView>
+    <SampleText>HOME</SampleText>
+    <Button
+      onPress={() => navigation.navigate('Profile', { name: 'Jane' })}
+      title="Go to a profile screen"
+    />
+    <Button
+      onPress={() => navigation.goBack(null)}
+      title="Go back"
+    />
+    <TouchableHighlight onPress={() => navigation.navigate('Profile', { name: 'Bob' })}>
+      <Text>{"Go to Bob's Profile"}</Text>
+    </TouchableHighlight>
+  </ScrollView>
 );
 MyHomeScreen.navigationOptions = {
   title: 'Welcome',
